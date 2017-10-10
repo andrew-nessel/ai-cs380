@@ -5,6 +5,10 @@
 #include <vector>;
 #include <string>;
 #include <tuple>;
+#include<iostream>;
+#include<fstream>;
+#include<sstream>;
+
 using namespace std;
 
 enum direction {up, down, right, left};
@@ -14,7 +18,7 @@ class Board {
 
 private:
 	vector<vector<int>> Matrix;
-	void initBoard();
+	void initBoard(int length, int width);
 	void normalize();
 
 public:
