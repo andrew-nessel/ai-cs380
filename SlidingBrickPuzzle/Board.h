@@ -8,6 +8,7 @@
 #include<iostream>;
 #include<fstream>;
 #include<sstream>;
+#include<set>;
 
 using namespace std;
 
@@ -32,8 +33,10 @@ public:
 	void normalize(); //normalize the numbers associated with the blocks on the board
 	bool equal(Board board); //checks equality of this board to another
 	bool solved(); //returns whether this board is solved
-	bool applyMove(tuple<int,int> move); //applys the given move (block number and direction) to this board
+	bool applyMove(tuple<int, direction> move); //applys the given move (block number and direction) to this board
 	Board applyMoveClone(tuple<int, direction> move); //clones this board and applys the given move (block number and direction) to the new board
+	bool validMove(tuple<int, direction> move);
+	vector<tuple<int, direction>> generateMoves(tuple<int, direction> move);
 
 	//Board cloneState(Board board); //utility class for calling without reference
 	//bool solved(Board board); //utility class for calling without reference

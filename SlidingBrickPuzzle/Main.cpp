@@ -7,7 +7,7 @@ int main ()
 	Board myBoard;
 	myBoard.printBoard();
 
-	Board myBoard2("C:/Users/Andrew Nessel/Documents/repo/ai-cs380/SlidingBrickPuzzle/normalizeTest.txt");
+	Board myBoard2("../normalizeTest.txt");
 	
 	cout << "\n";
 	myBoard2.printBoard();
