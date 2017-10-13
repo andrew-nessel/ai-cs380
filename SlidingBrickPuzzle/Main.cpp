@@ -1,5 +1,6 @@
 
 #include "BOARD.h";
+#include "RANDOMWALK.h";
 using namespace std;
 
 int main ()
@@ -16,11 +17,18 @@ int main ()
 	cout << "\n";
 	myBoard2.printBoard();
 
-//	Board myBoard3("C:/Users/Andrew Nessel/Documents/repo/ai-cs380/SlidingBrickPuzzle/normalizeTest.txt");
+	Board myBoard3("../normalizeTest.txt");
 
-//	myBoard3.normalize();
+	//myBoard3.normalize();
 
-//	cout << "\n\n";
-//	cout << myBoard3.equal(myBoard2);
+	cout << "\n\n";
+	cout << myBoard3.equal(myBoard2);
+
+	cout << myBoard3.equal(myBoard);
+	cout << myBoard2.equal(myBoard3);
+
+	//RandomWalk rando;
+	//rando.walk();
+
 	system("PAUSE");
 }

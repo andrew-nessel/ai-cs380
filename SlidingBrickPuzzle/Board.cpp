@@ -87,10 +87,10 @@ void Board::loadBoard(string filename) //loads board from a file
 bool Board::equal(Board board) //checks equality of this board to another
 {
 	normalize();
-	int i;
+	//int i;
 	board.normalize();
 
-	if (board.Matrix.size() != matrixLength) 
+	if ((board.matrixLength != matrixLength) || (board.matrixWidth != matrixWidth))
 	{
 		return false;
 	}
@@ -226,7 +226,7 @@ bool Board::validMove(tuple<int, direction> move)
 	return true;
 }
 
-vector<tuple<int, direction>> Board::generateMoves(tuple<int, direction> move) //returns a list of all available valid moves
+vector<tuple<int, direction>> Board::generateMoves() //returns a list of all available valid moves
 {//get every block number and check if every block + number combo is valid and return a list of the valid ones
 	vector<int> closedList;
 	vector<tuple<int, direction>> availableMoves;
