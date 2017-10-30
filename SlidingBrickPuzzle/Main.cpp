@@ -1,34 +1,22 @@
 
-#include "BOARD.h";
-#include "RANDOMWALK.h";
+#include "Board.h"
+#include "RandomWalk.h"
 using namespace std;
 
-int main ()
+int main (int argc, char *argv[])
 {
-	Board myBoard;
-	myBoard.printBoard();
 
-	Board myBoard2("../normalizeTest.txt");
-	
-	cout << "\n";
-	myBoard2.printBoard();
-	myBoard2.normalize();
+	//string filename(argv[0]);
+	//string filename;
+	//stringstream newString;
+	//newString << argv[0];
+	//newString >> filename;
 
-	cout << "\n";
-	myBoard2.printBoard();
+	//int walkLimit;
+	//stringstream newInt;
+	//newInt << argv[1];
+	//newInt >> walkLimit;
 
-	Board myBoard3("../normalizeTest.txt");
-
-	//myBoard3.normalize();
-
-	cout << "\n\n";
-	cout << myBoard3.equal(myBoard2);
-
-	cout << myBoard3.equal(myBoard);
-	cout << myBoard2.equal(myBoard3);
-
-	//RandomWalk rando;
-	//rando.walk();
-
-	system("PAUSE");
+	RandomWalk rando(5, "test.txt");
+	rando.walk();
 }

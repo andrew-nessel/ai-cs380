@@ -2,13 +2,13 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include <vector>;
-#include <string>;
-#include <tuple>;
-#include<iostream>;
-#include<fstream>;
-#include<sstream>;
-#include<set>;
+#include <vector>
+#include <string>
+#include <tuple>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -21,7 +21,7 @@ private:
 	vector<vector<int>> Matrix;
 	int matrixLength, matrixWidth;
 	void initBoard(int length, int width);
-	void Board::swapIdx(int idx1, int idx2);
+	void swapIdx(int idx1, int idx2);
 
 public:
 	Board(); //contructors
