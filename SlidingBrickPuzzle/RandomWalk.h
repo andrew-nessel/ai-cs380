@@ -2,11 +2,11 @@
 #ifndef RANDOMWALK_H
 #define RANDOMWALK_H
 
-#include "BOARD.h";
-#include <string>;
-#include <stdlib.h>;
-#include <time.h>;
-#include <iostream>;
+#include "Board.h"
+#include <string>
+#include <stdlib.h>
+#include <time.h>
+#include <iostream>
 
 using namespace std;
 

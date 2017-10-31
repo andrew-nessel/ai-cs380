@@ -1,22 +1,31 @@
 
 #include "Board.h"
-#include "RandomWalk.h"
+#include "SearchNode.h"
+#include "UninformedStateSearch.h"
 using namespace std;
 
 int main (int argc, char *argv[])
 {
+	string filename = "../test.txt";
+	//filename = argv[1];
+	SearchNode startState = SearchNode(Board(filename));
+	UninformedStateSearch searchFunc = UninformedStateSearch();
 
-	//string filename(argv[0]);
-	//string filename;
-	//stringstream newString;
-	//newString << argv[0];
-	//newString >> filename;
+	string searchType = "bfs";
+	//searchType = argv[2];
 
-	//int walkLimit;
-	//stringstream newInt;
-	//newInt << argv[1];
-	//newInt >> walkLimit;
+	if (searchType == "bfs") {
+		searchFunc.breathFirstSearch(startState);
+	}
+	else if (searchType == "dfs") {
+		searchFunc.depthFirstSearch(startState);
+	}
+	else if (searchType == "id") {
+		searchFunc.iterativeDeepening(startState);
+	}
+	else {
+		cout << "Please choose between 'bfs' 'dfs' and 'id' or read the readme included";
+	}
 
-	RandomWalk rando(5, "test.txt");
-	rando.walk();
+	system("PAUSE");
 }

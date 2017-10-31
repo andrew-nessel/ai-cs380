@@ -47,7 +47,7 @@ void Board::printBoard() //prints out board to standard out
 		str += "\n";
 	}
 
-	cout << str;
+	cout << str << endl;
 }
 
 void Board::loadBoard(string filename) //loads board from a file
@@ -108,11 +108,6 @@ bool Board::equal(Board board) //checks equality of this board to another
 
 	for (int x = 0; x < matrixLength; x++)
 	{
-		if (board.Matrix[x].size() != matrixWidth)
-		{
-			return false;
-		}
-
 		for (int y = 0; y < matrixWidth; y++)
 		{
 			if (Matrix[x][y] != board.Matrix[x][y])
