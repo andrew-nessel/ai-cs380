@@ -34,10 +34,65 @@ bool UninformedStateSearch::breathFirstSearch(SearchNode startState) {
 }
 
 bool UninformedStateSearch::depthFirstSearch(SearchNode startState) {
+	vector<SearchNode> openList = vector<SearchNode>();
+	vector<SearchNode> closedList = vector<SearchNode>();
+	SearchNode currentState = startState;
+
+	openList.push_back(startState);
+
+	while (!openList.empty()) {
+		currentState = openList.back();
+		openList.pop_back();
+		closedList.push_back(currentState);
+
+		vector<SearchNode> children = currentState.generateChildren();
+
+		for (SearchNode child : children) {
+			if (child.getState().solved()) {
+				printSolution(child);
+				return true;
+			}
+			else if (!vectorSearch(closedList, child)) { //child not in closed
+				openList.push_back(child);
+			}
+		}
+	}
+
 	return false;
 }
 
-bool UninformedStateSearch::iterativeDeepening(SearchNode startState) {
+bool UninformedStateSearch::iterativeDeepening(SearchNode startState, int maxDepth) {
+	
+	int newDepth = 1;
+
+	while(maxDepth >= newDepth) {
+		vector<SearchNode> openList = vector<SearchNode>();
+		vector<SearchNode> closedList = vector<SearchNode>();
+		SearchNode currentState = startState;
+
+		openList.push_back(startState);
+
+		while ((!openList.empty()) && (currentState.getDepth() < newDepth)) {
+			currentState = openList[0];
+			openList.erase(openList.begin());
+			closedList.push_back(currentState);
+
+			vector<SearchNode> children = currentState.generateChildren();
+
+			for (SearchNode child : children) {
+				if (child.getState().solved()) {
+					printSolution(child);
+					return true;
+				}
+				else if (!vectorSearch(closedList, child)) { //child not in closed
+					openList.push_back(child);
+				}
+			}
+		}
+
+		newDepth++;		
+	}
+	
 	return false;
 }
 
@@ -57,18 +112,18 @@ void UninformedStateSearch::printSolution(SearchNode solutionState) {
 	SearchNode currentNode = solutionState;
 	path.insert(path.begin(), solutionState);
 
-	int x = 10;
+	cout << "We solved it!!!1!1!";
+	solutionState.getState().printBoard(); //this is a placeholder for the actual print solution 
 
-	//while (!currentNode.isRoot()) {
-	while(x>0){
-		SearchNode newNode = currentNode.getParent();
-		currentNode = newNode;
-		path.insert(path.begin(), currentNode);
-		currentNode.getState().printBoard();
-		x--;
-	}
+	//while (!currentNode.isRoot()) { //reconstruct the path to the solution
+		//SearchNode newNode = currentNode.getParent();
+		//currentNode = newNode;
+		//path.insert(path.begin(), currentNode);
+		//currentNode.getState().printBoard();
+		//x--;
+	//}
 
-	//for (SearchNode child : path) {
+	//for (SearchNode child : path) { //print each part of the path to the solution
 		//child.getState().printBoard();
 		//if (!child.isRoot()) {
 		//	int block = get<0>(child.getMove());

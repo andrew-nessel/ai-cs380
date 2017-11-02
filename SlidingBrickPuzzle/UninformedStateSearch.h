@@ -19,7 +19,7 @@ public:
 
 	bool breathFirstSearch(SearchNode startState);
 	bool depthFirstSearch(SearchNode startState);
-	bool iterativeDeepening(SearchNode startState);
+	bool iterativeDeepening(SearchNode startState, int maxDepth);
 
 	bool vectorSearch(vector<SearchNode> nodeList, SearchNode state);
 	void printSolution(SearchNode solutionState);

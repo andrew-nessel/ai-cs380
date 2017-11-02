@@ -11,7 +11,7 @@ int main (int argc, char *argv[])
 	SearchNode startState = SearchNode(Board(filename));
 	UninformedStateSearch searchFunc = UninformedStateSearch();
 
-	string searchType = "bfs";
+	string searchType = "id";
 	//searchType = argv[2];
 
 	if (searchType == "bfs") {
@@ -21,7 +21,7 @@ int main (int argc, char *argv[])
 		searchFunc.depthFirstSearch(startState);
 	}
 	else if (searchType == "id") {
-		searchFunc.iterativeDeepening(startState);
+		searchFunc.iterativeDeepening(startState, 10);
 	}
 	else {
 		cout << "Please choose between 'bfs' 'dfs' and 'id' or read the readme included";
