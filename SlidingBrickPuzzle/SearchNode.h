@@ -20,7 +20,7 @@ private:
 
 public:
 
-	SearchNode(Board current, SearchNode* parent, tuple<int, direction> move, int d);
+	SearchNode(Board current, SearchNode parent, tuple<int, direction> move, int d);
 	SearchNode(Board current);
 
 	SearchNode getParent();

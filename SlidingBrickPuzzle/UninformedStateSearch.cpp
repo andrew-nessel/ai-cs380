@@ -77,7 +77,7 @@ bool UninformedStateSearch::iterativeDeepening(SearchNode startState, int maxDep
 			openList.erase(openList.begin());
 			closedList.push_back(currentState);
 
-			vector<SearchNode> children = currentState.generateChildren();
+			vector<SearchNode> children = (currentState).generateChildren();
 
 			for (SearchNode child : children) {
 				if (child.getState().solved()) {
@@ -110,29 +110,29 @@ bool UninformedStateSearch::vectorSearch(vector<SearchNode> nodeList, SearchNode
 void UninformedStateSearch::printSolution(SearchNode solutionState) {
 	vector<SearchNode> path = vector<SearchNode>();
 	SearchNode currentNode = solutionState;
-	path.insert(path.begin(), solutionState);
+	path.push_back(solutionState);
 
-	cout << "We solved it!!!1!1!";
-	solutionState.getState().printBoard(); //this is a placeholder for the actual print solution 
+	//cout << "We solved it!!!1!1!";
+	//solutionState.getState().printBoard(); //this is a placeholder for the actual print solution 
 
-	//while (!currentNode.isRoot()) { //reconstruct the path to the solution
-		//SearchNode newNode = currentNode.getParent();
-		//currentNode = newNode;
-		//path.insert(path.begin(), currentNode);
+	while (!currentNode.isRoot()) { //reconstruct the path to the solution
+		currentNode = currentNode.getParent();
+		path.push_back(currentNode);
 		//currentNode.getState().printBoard();
 		//x--;
-	//}
+	}
 
-	//for (SearchNode child : path) { //print each part of the path to the solution
-		//child.getState().printBoard();
-		//if (!child.isRoot()) {
-		//	int block = get<0>(child.getMove());
-		//	direction dir = get<1>(child.getMove());
-		//	cout << "\n";
-		//	cout << block;
-		//	cout << ",";
-		//	cout << dir << endl;
-		//}
-		//cout << "\n";
-	//}
+	for (int x = path.size()-1; x >=0; x--) { //print each part of the path to the solution
+		SearchNode child = path[x];
+		child.getState().printBoard();
+		if (!child.isRoot()) {
+			int block = get<0>(child.getMove());
+			direction dir = get<1>(child.getMove());
+			cout << "\n";
+			cout << block;
+			cout << ",";
+			cout << dir << endl;
+		}
+		cout << "\n";
+	}
 }

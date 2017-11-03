@@ -1,9 +1,9 @@
 #include "SearchNode.h"
 using namespace std;
 
-SearchNode::SearchNode(Board current, SearchNode* parent, tuple<int, direction> move, int d) {
+SearchNode::SearchNode(Board current, SearchNode parent, tuple<int, direction> move, int d) {
 	currentState = current;
-	parentState = parent;
+	parentState = &parent;
 	root = false;
 	usedMove = move;
 	depth = d;
@@ -46,7 +46,7 @@ vector<SearchNode> SearchNode::generateChildren() {
 	}
 
 	for (tuple<int, direction> move : moves) {
-		children.push_back(SearchNode(currentState.applyMoveClone(move), me, move, depth + 1));
+		children.push_back(SearchNode(currentState.applyMoveClone(move), *me, move, depth + 1));
 	}
 
 	return children;
