@@ -15,23 +15,36 @@ SearchNode::SearchNode(Board current) { //if you don't send it a parent it assum
 	depth = 0;
 }
 
-SearchNode SearchNode::getParent() {
+
+SearchNode::SearchNode(const SearchNode& node) {
+	currentState = node.getState();
+	root = node.isRoot();
+
+	if (root) {
+		parentState = &node.getParent();
+	}
+
+	usedMove = node.getMove();
+	depth = node.getDepth();
+}
+
+SearchNode SearchNode::getParent() const {
 	return *parentState;
 }
 
-Board SearchNode::getState() {
+Board SearchNode::getState() const {
 	return currentState;
 }
 
-tuple<int, direction> SearchNode::getMove() {
+tuple<int, direction> SearchNode::getMove() const {
 	return usedMove;
 }
 
-int SearchNode::getDepth() {
+int SearchNode::getDepth() const {
 	return depth;
 }
 
-bool SearchNode::isRoot() {
+bool SearchNode::isRoot() const {
 	return root;
 }
 

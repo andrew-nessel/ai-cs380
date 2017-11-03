@@ -12,9 +12,10 @@ Board::Board(string filename) {
 
 Board::Board(const Board& board) { //this creates a copy of the board sent in
 	//just copies the values in the boards matrix
-	vector<vector<int>> oldMatrix = board.Matrix;
-	int length = board.matrixLength;
-	int width = board.matrixWidth;
+	vector<vector<int>> oldMatrix = board.getMatrix();
+
+	int length = oldMatrix.size();
+	int width = oldMatrix[0].size();
 
 	initBoard(length, width);
 
@@ -56,7 +57,7 @@ void Board::loadBoard(string filename) //loads board from a file
 	int length, width, block;
 	string delim = ",";
 	ifstream infile;
-	infile.open (filename);
+	infile.open(filename);
 
 	if(!infile.is_open())
 	{
@@ -326,6 +327,10 @@ void Board::swapIdx(int idx1, int idx2) {
 			}
 		}
 	}
+}
+
+vector<vector<int>> Board::getMatrix() const {
+	return Matrix;
 }
 
 //Board Board::cloneState(Board board){ //utility class for calling without reference

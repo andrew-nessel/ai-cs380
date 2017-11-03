@@ -2,7 +2,7 @@
 #include "Board.h"
 #include "SearchNode.h"
 #include "UninformedStateSearch.h"
-#include <sstream>;
+#include <sstream>
 using namespace std;
 
 int main (int argc, char *argv[])
@@ -10,14 +10,14 @@ int main (int argc, char *argv[])
 	string filename = "../test.txt";
 	//string filename = argv[1];
 
-	cout << argv[1] << endl;
-	cout << argv[2] << endl;
+	//cout << argv[1] << endl;
+	//cout << argv[2] << endl;
 
 	SearchNode startState = SearchNode(Board(filename));
 	UninformedStateSearch searchFunc = UninformedStateSearch();
 
-	//string searchType = "id";
-	string searchType = argv[2];
+	string searchType = "bfs";
+	//string searchType = argv[2];
 
 	if (searchType == "bfs") {
 		searchFunc.breathFirstSearch(startState);
@@ -26,10 +26,10 @@ int main (int argc, char *argv[])
 		searchFunc.depthFirstSearch(startState);
 	}
 	else if (searchType == "id") {
-		string deep = argv[3];
-		stringstream num(deep);
-		int depth = 0;
-		num >> depth;
+		//string deep = argv[3];
+		//stringstream num(deep);
+		int depth = 10;
+		//num >> depth;
 
 		searchFunc.iterativeDeepening(startState, depth);
 	}

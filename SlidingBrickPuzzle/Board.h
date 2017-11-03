@@ -37,6 +37,7 @@ public:
 	Board applyMoveClone(tuple<int, direction> move); //clones this board and applys the given move (block number and direction) to the new board
 	bool validMove(tuple<int, direction> move);
 	vector<tuple<int, direction>> generateMoves();
+	vector<vector<int>> getMatrix() const;
 
 	//Board cloneState(Board board); //utility class for calling without reference
 	//bool solved(Board board); //utility class for calling without reference

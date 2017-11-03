@@ -1,5 +1,5 @@
 
-#include "UninformedStateSearch.h";
+#include "UninformedStateSearch.h"
 using namespace std;
 
 UninformedStateSearch::UninformedStateSearch() {
@@ -96,7 +96,7 @@ bool UninformedStateSearch::iterativeDeepening(SearchNode startState, int maxDep
 	return false;
 }
 
-bool UninformedStateSearch::vectorSearch(vector<SearchNode> nodeList, SearchNode state) {
+bool UninformedStateSearch::vectorSearch(const vector<SearchNode>& nodeList, SearchNode state) {
 
 	for (SearchNode node : nodeList) {
 		if (node.getState().equal(state.getState())) {
@@ -117,7 +117,7 @@ void UninformedStateSearch::printSolution(SearchNode solutionState) {
 
 	while (!currentNode.isRoot()) { //reconstruct the path to the solution
 		currentNode = currentNode.getParent();
-		path.push_back(currentNode);
+		//path.push_back(currentNode);
 		//currentNode.getState().printBoard();
 		//x--;
 	}
