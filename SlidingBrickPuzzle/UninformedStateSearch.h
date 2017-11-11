@@ -6,12 +6,15 @@
 #include <string>
 #include <stdlib.h>
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <ctime>
 
 using namespace std;
 
 class UninformedStateSearch {
+
+private:
+	int nodesExplored;
+	double timeTaken;
 
 public:
 
@@ -21,7 +24,7 @@ public:
 	bool depthFirstSearch(SearchNode startState);
 	bool iterativeDeepening(SearchNode startState, int maxDepth);
 
-	bool vectorSearch(const vector<SearchNode>& nodeList, SearchNode state);
+	bool dequeSearch(deque<SearchNode> nodeList, SearchNode state);
 	void printSolution(SearchNode solutionState);
 
 };

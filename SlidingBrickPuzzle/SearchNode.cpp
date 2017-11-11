@@ -3,7 +3,8 @@ using namespace std;
 
 SearchNode::SearchNode(Board current, SearchNode parent, tuple<int, direction> move, int d) {
 	currentState = current;
-	parentState = &parent;
+	SearchNode* newParent = new SearchNode(parent);
+	parentState = newParent;
 	root = false;
 	usedMove = move;
 	depth = d;
@@ -13,15 +14,24 @@ SearchNode::SearchNode(Board current) { //if you don't send it a parent it assum
 	currentState = current;
 	root = true;
 	depth = 0;
+	parentState = new SearchNode();
+}
+
+SearchNode::SearchNode() { //if you don't send it a parent it assumes you are giving the root, plus it hopes you don't call getParent() cause you might break
+	currentState = Board();
+	root = true;
+	depth = 0;
 }
 
 
 SearchNode::SearchNode(const SearchNode& node) {
+
 	currentState = node.getState();
 	root = node.isRoot();
 
-	if (root) {
-		parentState = &node.getParent();
+	if (!root) {
+		SearchNode* newParent = new SearchNode(node.getParent());
+		parentState = newParent;
 	}
 
 	usedMove = node.getMove();
@@ -29,6 +39,9 @@ SearchNode::SearchNode(const SearchNode& node) {
 }
 
 SearchNode SearchNode::getParent() const {
+	if (root) {
+		return SearchNode();
+	}
 	return *parentState;
 }
 
@@ -48,9 +61,9 @@ bool SearchNode::isRoot() const {
 	return root;
 }
 
-vector<SearchNode> SearchNode::generateChildren() {
+deque<SearchNode> SearchNode::generateChildren() {
 	vector<tuple<int, direction>> moves = currentState.generateMoves();
-	vector<SearchNode> children;
+	deque<SearchNode> children;
 	SearchNode* me = this;
 
 	if (!root) {
@@ -59,7 +72,8 @@ vector<SearchNode> SearchNode::generateChildren() {
 	}
 
 	for (tuple<int, direction> move : moves) {
-		children.push_back(SearchNode(currentState.applyMoveClone(move), *me, move, depth + 1));
+		SearchNode newNode = SearchNode(currentState.applyMoveClone(move), *me, move, depth + 1);
+		children.push_back(newNode);
 	}
 
 	return children;

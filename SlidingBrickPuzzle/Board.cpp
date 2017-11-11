@@ -3,7 +3,7 @@
 using namespace std;
 	
 Board::Board() { //just calling the board without a file value opens the standard test board
-	loadBoard("../test.txt");
+	initBoard(0, 0);
 }
 
 Board::Board(string filename) {
@@ -15,7 +15,11 @@ Board::Board(const Board& board) { //this creates a copy of the board sent in
 	vector<vector<int>> oldMatrix = board.getMatrix();
 
 	int length = oldMatrix.size();
-	int width = oldMatrix[0].size();
+	int width = 0;
+
+	if (length > 0) {
+		width = oldMatrix[0].size();
+	}
 
 	initBoard(length, width);
 

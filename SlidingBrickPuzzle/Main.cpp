@@ -7,16 +7,13 @@ using namespace std;
 
 int main (int argc, char *argv[])
 {
-	string filename = "../test.txt";
+	string filename = "../SBP-level2.txt";
 	//string filename = argv[1];
-
-	//cout << argv[1] << endl;
-	//cout << argv[2] << endl;
 
 	SearchNode startState = SearchNode(Board(filename));
 	UninformedStateSearch searchFunc = UninformedStateSearch();
 
-	string searchType = "bfs";
+	string searchType = "id";
 	//string searchType = argv[2];
 
 	if (searchType == "bfs") {
@@ -28,7 +25,7 @@ int main (int argc, char *argv[])
 	else if (searchType == "id") {
 		//string deep = argv[3];
 		//stringstream num(deep);
-		int depth = 10;
+		int depth = 20;
 		//num >> depth;
 
 		searchFunc.iterativeDeepening(startState, depth);
@@ -36,4 +33,5 @@ int main (int argc, char *argv[])
 	else {
 		cout << "Please choose between 'bfs' 'dfs' and 'id' or read the readme included";
 	}
+	system("pause");
 }
